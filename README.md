@@ -17,9 +17,8 @@ Installation & Usage
 1.  Install puppet-pushover as a module in your Puppet master's module
     path.
 
-2.  Update the `apikey` and `userkey` variables in the `pushover.yaml` file with
-    your Pushover application key (you'll need to create an application)
-    and your user key.
+2.  Update the `userkey` variable in the `pushover.yaml` file with your
+    user key.
 
 3.  Enable pluginsync and reports on your master and clients in `puppet.conf`
 
