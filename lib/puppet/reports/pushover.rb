@@ -2,6 +2,7 @@ require 'puppet'
 require 'net/https'
 require 'uri'
 require 'yaml'
+require 'timeout'
 
 unless Puppet.version.to_i >= '2.6.5'.to_i
   fail "This report processor requires Puppet version 2.6.5 or later"
@@ -24,7 +25,7 @@ Puppet::Reports.register_report(:pushover) do
       message = "Puppet run for #{self.host} #{self.status} at #{Time.now.asctime}."
 
       begin
-        timeout(8) do
+        Timeout.timeout(8) do
           Puppet.debug "Sending status for #{self.host} to Pushover."
           url = URI.parse("https://api.pushover.net/1/messages")
           http = Net::HTTP.new(url.host, url.port)
